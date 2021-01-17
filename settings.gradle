@@ -1,0 +1,3 @@
+include ':rendering_core'
+include ':app'
+rootProject.name = "AndroidRenderPlayground"
