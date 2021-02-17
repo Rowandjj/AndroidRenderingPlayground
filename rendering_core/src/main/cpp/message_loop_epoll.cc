@@ -4,6 +4,7 @@
 
 #include "message_loop_epoll.h"
 #include "log.h"
+#include <errno.h>
 
 #define LOG_TAG "MessageLoopEpoll"
 namespace bw {
@@ -59,7 +60,11 @@ namespace bw {
                 continue;
             }
 
-            // 唤醒事件
+            // 处理中断
+            if(result == -1 && errno == EINTR) {
+                continue;
+            }
+
             if(result != 1) {
                 running_ = false;
                 continue;

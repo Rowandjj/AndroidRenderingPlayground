@@ -21,10 +21,10 @@ namespace bw {
         pthread_key_t g_message_loop_impl_tls_ = -1;
     }
 
-    TaskRunner::TaskRunner(MessageLoop *message_loop) :message_loop_(message_loop) {}
+    TaskRunner::TaskRunner(MessageLoop *message_loop) :message_loop_(message_loop),is_valid_(true) {}
 
     void TaskRunner::PostTask(const Task &task) {
-        if(message_loop_) {
+        if(is_valid_ && message_loop_) {
             message_loop_->PostTask(task);
         }
     }
@@ -41,6 +41,7 @@ namespace bw {
         if(g_message_loop_impl_tls_ != -1) {
             pthread_key_delete(g_message_loop_impl_tls_);
             g_message_loop_impl_tls_ = -1;
+            task_runner_->SetValid(false);
         }
     }
 

@@ -8,6 +8,7 @@
 #include <functional>
 #include <queue>
 #include <mutex>
+#include <atomic>
 
 namespace bw {
 
@@ -20,8 +21,15 @@ namespace bw {
         ~TaskRunner() = default;
 
         void PostTask(const Task& task);
+
+        void SetValid(bool valid) {
+            is_valid_ = valid;
+        }
+
     private:
         MessageLoop* message_loop_;
+
+        std::atomic<bool> is_valid_;
     };
 
     class MessageLoop {
