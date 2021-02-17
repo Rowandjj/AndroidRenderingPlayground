@@ -6,6 +6,7 @@
 #define ANDROIDRENDERPLAYGROUND_ASYNC_GL_RENDER_H
 
 #include "render_interface.h"
+#include "thread.h"
 #include <memory>
 
 namespace bw {
@@ -20,6 +21,7 @@ namespace bw {
         void DrawFrame(long frameInNanos) override;
     private:
        std::unique_ptr<RenderInterface> render_interface_;
+       std::unique_ptr<Thread> render_thread_;
     };
 }
 

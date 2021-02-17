@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         mRenderInstance = new RenderInstance.Builder(this)
                 .withRenderType(RenderInstance.RenderType.TEXTURE)
-//                .enableAsyncRendering()
+                .enableAsyncRendering()
                 .build();
         mRenderInstance.attachTo(mContainer);
     }

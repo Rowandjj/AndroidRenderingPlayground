@@ -18,6 +18,8 @@ set(SOURCE_FILES
         ${CMAKE_SOURCE_DIR}/render_factory.cc
 
         ${CMAKE_SOURCE_DIR}/thread.cc
+        ${CMAKE_SOURCE_DIR}/message_loop.cc
+        ${CMAKE_SOURCE_DIR}/message_loop_epoll.cc
         )
 
 add_library( # Sets the name of the library.
